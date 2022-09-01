@@ -50,10 +50,12 @@
   <ItemGroup>
     <Compile Include="AsyncPackageExtensions.cs" />
     <Compile Include="CustomScriptFormatter.cs" />
+    <Compile Include="DisableTemporalTable.cs" />
     <Compile Include="DropExtensions.cs" />
     <Compile Include="DropObjectVisitor.cs" />
     <Compile Include="DropObjectList.cs" />
     <Compile Include="GenerateDropScript.cs" />
+    <Compile Include="IdentifierExtensions.cs" />
     <Compile Include="IFragmentProvider.cs" />
     <Compile Include="IServiceProviderExtensions.cs" />
     <Compile Include="IWpfTextViewExtensions.cs" />

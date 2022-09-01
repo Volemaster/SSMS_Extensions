@@ -48,16 +48,21 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="AsyncPackageExtensions.cs" />
     <Compile Include="CustomScriptFormatter.cs" />
     <Compile Include="DropExtensions.cs" />
     <Compile Include="DropObjectVisitor.cs" />
     <Compile Include="DropObjectList.cs" />
     <Compile Include="GenerateDropScript.cs" />
     <Compile Include="IFragmentProvider.cs" />
+    <Compile Include="IServiceProviderExtensions.cs" />
+    <Compile Include="IWpfTextViewExtensions.cs" />
+    <Compile Include="ParseErrorsExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScriptWriter.cs" />
     <Compile Include="SqlAggregator.cs" />
     <Compile Include="SSMSPackage.cs" />
+    <Compile Include="StringBuilderExtensions.cs" />
     <Compile Include="TypeExtensions.cs" />
   </ItemGroup>
   <ItemGroup>

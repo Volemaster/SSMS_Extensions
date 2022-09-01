@@ -1,12 +1,7 @@
 ﻿using Microsoft.SqlServer.TransactSql.ScriptDom;
-using Microsoft.VisualStudio.ComponentModelHost;
-using Microsoft.VisualStudio.Editor;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
-using Microsoft.VisualStudio.Text.Editor;
-using Microsoft.VisualStudio.TextManager.Interop;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Globalization;
 using System.IO;
@@ -17,97 +12,6 @@ using Task = System.Threading.Tasks.Task;
 
 namespace SSMS
 {
-    public static class IServiceProviderExtensions
-    {
-        public static T GetService<T>(this IServiceProvider serviceProvider) => (T)serviceProvider.GetService(typeof(T));
-        public static T GetService<T>(this IServiceProvider serviceProvider, Type serviceType) => (T)serviceProvider.GetService(serviceType);
-    }
-    public static class ParseErrorsExtension
-    {
-        public static IList<string> ToStringList(this IList<ParseError> parseErrors)
-        {
-            var results = new List<String>();
-            foreach (var p in parseErrors)
-            {
-                results.Add($"***Error: {p.Number} at Line/Column {p.Line}/{p.Column}:\r\n   {p.Message}***");
-            }
-            return results;
-        }
-    }
-    public static class AsyncPackageExtensions
-    {
-        public static IWpfTextView GetWpfTextView(this IServiceProvider serviceProvider)
-        {
-            var textManager = (IVsTextManager)serviceProvider.GetService(typeof(SVsTextManager));
-            var componentModel = (IComponentModel)serviceProvider.GetService(typeof(SComponentModel));
-            var editor = componentModel.GetService<IVsEditorAdaptersFactoryService>();
-            textManager.GetActiveView(1, null, out var textView);
-            return editor.GetWpfTextView(textView);
-        }
-        //public static IWpfTextView GetWpfTextView(this AsyncPackage package)
-        //{
-
-        //    package.TryGetActiveView(out var textView);
-        //    VsShellUtilities.ShowMessageBox(
-        //        package,
-        //        "GetWpfTextView",
-        //        "Test",
-        //        OLEMSGICON.OLEMSGICON_INFO,
-        //        OLEMSGBUTTON.OLEMSGBUTTON_OK,
-        //        OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST);
-        //    var componentModel = (package as IServiceProvider).GetService<IComponentModel>(typeof(SComponentModel));
-        //    var editor = componentModel.GetService<IVsEditorAdaptersFactoryService>();
-        //    VsShellUtilities.ShowMessageBox(
-        //        package,
-        //        "GetWpfTextView-2",
-        //        "Test",
-        //        OLEMSGICON.OLEMSGICON_INFO,
-        //        OLEMSGBUTTON.OLEMSGBUTTON_OK,
-        //        OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST);
-        //    return editor.GetWpfTextView(textView);
-        //}
-        //public static bool TryGetActiveView(this AsyncPackage package, out IVsTextView view)
-        //{
-        //    VsShellUtilities.ShowMessageBox(
-        //        package,
-        //        "TryGetActiveView",
-        //        "Test",
-        //        OLEMSGICON.OLEMSGICON_INFO,
-        //        OLEMSGBUTTON.OLEMSGBUTTON_OK,
-        //        OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST);
-        //    var textManager = (package as IServiceProvider).GetService<IVsTextManager>();
-        //    return (textManager.GetActiveView(1, null, out view)==0);
-        //}
-    }
-
-    public static class IWpfTextViewExtensions
-    {
-        public static string GetTextSnapshot(this IWpfTextView view)
-        {
-            try
-            {
-                return view.TextBuffer.CurrentSnapshot.GetText();
-            }
-            catch (Exception e)
-            {
-                throw new ApplicationException("Error in GetTextSnapshot", e);
-            }
-        }
-    }
-    
-    public static class StringBuilderExtensions
-    {
-        public static StringBuilder AppendLines(this StringBuilder stringBuilder, IEnumerable<string> strings)
-        {
-            foreach (var s in strings)
-            {
-                stringBuilder.AppendLine(s);
-            }
-            return stringBuilder;
-        }
-    }
-
-
     /// <summary>
     /// Command handler
     /// </summary>

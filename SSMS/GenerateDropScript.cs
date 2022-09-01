@@ -12,6 +12,7 @@ using Task = System.Threading.Tasks.Task;
 
 namespace SSMS
 {
+
     /// <summary>
     /// Command handler
     /// </summary>

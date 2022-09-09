@@ -61,6 +61,7 @@
     <Compile Include="IWpfTextViewExtensions.cs" />
     <Compile Include="ParseErrorsExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SchemaObjectNameExtensions.cs" />
     <Compile Include="ScriptWriter.cs" />
     <Compile Include="SqlAggregator.cs" />
     <Compile Include="SSMSPackage.cs" />
